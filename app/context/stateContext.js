@@ -22,10 +22,12 @@ export const BankContextProvider = ({ children }) => {
     if (items) {
       setBanks(items);
     } else {
-      fetch('https://dev.obtenmas.com/catom/api/challenge/banks', {method:'GET', mode:'no-cors'})
-        .then(res => res.json())
-        .then((res) => {
-          setBanks(res);
+
+      fetch(`/api/banks`)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setBanks(data);
         })
         .catch(console.log)
     }
